@@ -40,7 +40,7 @@ int FDC = B1010000;    //FDC1004's address as a slave
 RF24 radio(CE_PIN, CSN_PIN); // Create a Radio
 
 /*-----( Declare Variables )-----*/
-unsigned aCap[2];
+uint32_t aCap[2];
  
 void setup()   /****** SETUP: RUNS ONCE ******/
 {
