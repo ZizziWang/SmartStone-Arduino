@@ -53,7 +53,7 @@ void setup()   /****** SETUP: RUNS ONCE ******/
   FDC_write(0x0c, 0x05, 0xF0);    //FDC register setup, rate=100S/s, see Table 5
   
   radio.begin();
-  radio.openWritingPipe(pipe);  
+  radio.openWritingPipe(pipe);
 }//--(end setup )---
 
 
