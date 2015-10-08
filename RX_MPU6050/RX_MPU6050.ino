@@ -22,7 +22,7 @@ void setup() {
   Serial.println("Nrf24L01 Receiver Starting");
   radio.begin();
   radio.openReadingPipe(1,pipe);
-  radio.startListening();;  
+  radio.startListening();
 }//--(end setup )---
 
 void loop() 

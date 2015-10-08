@@ -1,28 +1,3 @@
-/* YourDuinoStarter Example: nRF24L01 Transmit Joystick values
- - WHAT IT DOES: Reads Analog values on A0, A1 and transmits
-   them over a nRF24L01 Radio Link to another transceiver.
- - SEE the comments after "//" on each line below
- - CONNECTIONS: nRF24L01 Modules See:
- http://arduino-info.wikispaces.com/Nrf24L01-2.4GHz-HowTo
-   1 - GND
-   2 - VCC 3.3V !!! NOT 5V
-   3 - CE to Arduino pin 9
-   4 - CSN to Arduino pin 10
-   5 - SCK to Arduino pin 13
-   6 - MOSI to Arduino pin 11
-   7 - MISO to Arduino pin 12
-   8 - UNUSED
-   - 
-   Analog Joystick or two 10K potentiometers:
-   GND to Arduino GND
-   VCC to Arduino +5V
-   X Pot to Arduino A0
-   Y Pot to Arduino A1
-   
- - V1.00 11/26/13
-   Based on examples at http://www.bajdi.com/
-   Questions: terry@yourduino.com */
-
 /*-----( Import needed libraries )-----*/
 #include <SPI.h>
 #include <nRF24L01.h>
@@ -37,12 +12,10 @@ const uint64_t pipe = 0xE8E8F0F0E1LL;    // Define the transmit pipe
 /*-----( Declare objects )-----*/
 RF24 radio(CE_PIN, CSN_PIN);    // Create a Radio
 /*-----( Declare Variables )-----*/
-uint16_t aCap[2];
-uint32_t u32Cap;
-int32_t s32Cap;
-uint32_t u32Cap1;
-uint32_t u32Cap2;
+int16_t aPack[8];
+int32_t s32Cap, s32Cap1, s32Cap2;
 double fCap;
+int16_t ax, ay, az, gx, gy, gz;
 
 void setup() {
   Serial.begin(9600);
@@ -59,27 +32,26 @@ void loop()
   if ( radio.available() )    // Read the data payload until we've received everything
   {
     // Fetch the data payload
-    radio.read( aCap, 2*sizeof(uint16_t));
-    u32Cap1 = aCap[0];
-    u32Cap2 = aCap[1];
-    /*check capacitance POS/NEG*/
-    if((aCap[0]>>15)==0)    //if capacitance>0
-    {
-      u32Cap = ((u32Cap1<<8)+(u32Cap2>>8));    //combine MSBs & LSBs
-      s32Cap = (int32_t)u32Cap;    //turn reading(unsign) into signed
-      fCap = (double)s32Cap;    //turn reading(signed) into float
-      fCap/= 524288;    //capacitance=CapData/2^19, see 8.6.1.1
-    }
-    else    //if capacitance<0
-    {
-      u32Cap = ((~u32Cap1+1)<<8+(~u32Cap2+1)>>8);    //turn MSBs & LSBs (2's COMP) into unsigned(POS), combine MSBs & LSBs
-      s32Cap = ((int32_t)u32Cap)*(-1);    //turn reading(unsign) into signed, NEG
-      fCap = (double)s32Cap;    //turn reading(signed) into float
-      fCap/= 524288;    //capacitance=CapData/2^19, see 8.6.1.1
-    }      
+    radio.read( aPack, 8*sizeof(int16_t));
+    s32Cap1 = aPack[0];
+    s32Cap2 = aPack[1];
+    s32Cap = (s32Cap1)<<16+(s32Cap2);
+    fCap = (double)s32Cap;
+    fCap/= 134217728;    // fCap/=2^27, capacitance=(CapData>>8)/2^19, see 8.6.1.1
+    ax = aPack[2];
+    ay = aPack[3];
+    az = aPack[4];
+    gx = aPack[5];
+    gy = aPack[6];
+    gz = aPack[7];
     Serial.print("Capacitance = ");
-    Serial.print(fCap);
-    Serial.println(" pF");
+    Serial.print(fCap); Serial.println(" pF");
+    Serial.print("accel_x = "); Serial.println(ax);
+    Serial.print("accel_y = "); Serial.println(ay);
+    Serial.print("accel_z = "); Serial.println(az);
+    Serial.print("gyro_x = "); Serial.println(gx);
+    Serial.print("gyro_y = "); Serial.println(gy);
+    Serial.print("gyro_z = "); Serial.println(gz);
   }
   else
   {    

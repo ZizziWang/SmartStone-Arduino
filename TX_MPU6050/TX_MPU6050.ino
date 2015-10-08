@@ -33,9 +33,9 @@ THE SOFTWARE.
 
 // I2Cdev and MPU6050 must be installed as libraries, or else the .cpp/.h files
 // for both classes must be in the include path of your project
-#include "I2Cdev.h"
-#include "MPU6050.h"
-#include "Wire.h"
+#include <I2Cdev.h>
+#include <MPU6050.h>
+#include <Wire.h>
 
 // Librares for nRF24L01+
 #include <SPI.h>
@@ -73,7 +73,10 @@ int16_t aPac[6];
 // uncomment "OUTPUT_READABLE_ACCELGYRO" if you want to see a tab-separated
 // list of the accel X/Y/Z and then gyro X/Y/Z values in decimal. Easy to read,
 // not so easy to parse, and slow(er) over UART.
+
+/*
 #define OUTPUT_READABLE_ACCELGYRO
+*/
 
 // uncomment "OUTPUT_BINARY_ACCELGYRO" to send all 6 axes of data as 16-bit
 // binary, one right after the other. This is very fast (as fast as possible

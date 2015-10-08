@@ -28,6 +28,8 @@
 #include <nRF24L01.h>
 #include <RF24.h>
 #include <Wire.h>    //I2C LIB
+#include <I2Cdev.h>
+#include <MPU6050.h>
 /*-----( Declare Constants and Pin Numbers )-----*/
 #define CE_PIN   9
 #define CSN_PIN 10
@@ -37,10 +39,13 @@ const uint64_t pipe = 0xE8E8F0F0E1LL; // Define the transmit pipe
 int FDC = B1010000;    //FDC1004's address as a slave
 
 /*-----( Declare objects )-----*/
+MPU6050 accelgyro;
 RF24 radio(CE_PIN, CSN_PIN);    // Create a Radio
 
 /*-----( Declare Variables )-----*/
-uint16_t aCap[2];
+int16_t aPack[8];
+int16_t ax, ay, az;
+int16_t gx, gy, gz;
  
 void setup()   /****** SETUP: RUNS ONCE ******/
 {
@@ -51,7 +56,7 @@ void setup()   /****** SETUP: RUNS ONCE ******/
     FDC_write(0x08+i, 0x1c+0x20*i, 0x00);
   }
   FDC_write(0x0c, 0x05, 0xF0);    //FDC register setup, rate=100S/s, see Table 5
-  
+  accelgyro.initialize();
   radio.begin();
   radio.openWritingPipe(pipe);
 }//--(end setup )---
@@ -59,36 +64,40 @@ void setup()   /****** SETUP: RUNS ONCE ******/
 
 void loop()    /****** LOOP: RUNS CONSTANTLY ******/
 {
-  aCap[0] = FDC_read(0x00);    //read CIN1 MSB
-  aCap[1] = FDC_read(0x01);    //read CIN1 LSB
-  radio.write(aCap, 2*sizeof(uint16_t));
+  accelgyro.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);    //read IMU raw data
+  aPack[0] = FDC_read(0x00);    //read CIN1 MSB
+  aPack[1] = FDC_read(0x01);    //read CIN1 LSB
+  aPack[2] = ax;
+  aPack[3] = ay;
+  aPack[4] = az;
+  aPack[5] = gx;
+  aPack[6] = gy;
+  aPack[7] = gz;
+  radio.write(aPack, 8*sizeof(int16_t));
   delay(1000);
 }    //--(end main loop )---
 
 /*-----( Declare User-written Functions )-----*/
-  void FDC_write(uint8_t u8Poi, uint8_t u8Reg1, uint8_t u8Reg2)    //write FDC1004 (pointer, REG_MSB, REG_LSB)
+  void FDC_write(int8_t s8Poi, int8_t s8Reg1, int8_t s8Reg2)    //write FDC1004 (pointer, REG_MSB, REG_LSB)
 {
   Wire.beginTransmission(FDC);
-  Wire.write(u8Poi);
-  Wire.write(u8Reg1);
-  Wire.write(u8Reg2);
+  Wire.write(s8Poi);
+  Wire.write(s8Reg1);
+  Wire.write(s8Reg2);
   Wire.endTransmission();
 }
 
-uint16_t FDC_read(uint8_t u8Reg)    //read FDC1004 (REG)
+uint16_t FDC_read(int8_t s8Reg)    //read FDC1004 (REG)
 {
   Wire.beginTransmission(FDC);
-  Wire.write(u8Reg);
+  Wire.write(s8Reg);
   Wire.endTransmission();
   Wire.requestFrom(FDC,2);
-  uint8_t u8Temp1=Wire.read();    //MSB of returning data
-  uint8_t u8Temp2=Wire.read();    //LSB of returning data
-  uint16_t u16Data=(u8Temp1<<8)+u8Temp2;    //combine returning data
-  return u16Data;
+  int8_t s8Temp1=Wire.read();    //MSB of returning data
+  int8_t s8Temp2=Wire.read();    //LSB of returning data
+  int16_t s16Data=(s8Temp1<<8)+s8Temp2;    //combine returning data
+  return s16Data;
 }
   
 //NONE
 //*********( THE END )***********
-
-
-
