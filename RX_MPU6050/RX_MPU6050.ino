@@ -50,5 +50,6 @@ void loop()
   {    
       Serial.println("No radio available");
   }
+  delay(1000);
 
 }    //--(end main loop )---

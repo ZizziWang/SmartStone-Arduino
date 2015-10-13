@@ -12,7 +12,7 @@ const uint64_t pipe = 0xE8E8F0F0E1LL; // Define the transmit pipe
 /*-----( Declare objects )-----*/
 RF24 radio(CE_PIN, CSN_PIN); // Create a Radio
 /*-----( Declare Variables )-----*/
-uint16_t aCap[2];
+uint32_t aCap[2];
 
 void setup() {
   Serial.begin(9600);
@@ -23,19 +23,20 @@ void setup() {
   radio.startListening();
 }//--(end setup )---
 
-void loop()
+void loop() 
 {
   Serial.println("==========================================");
   if ( radio.available() )
   {
     // Read the data payload until we've received everything
     radio.read( aCap, sizeof(aCap) );
-    Serial.print(aCap[0], BIN);
-    Serial.print("  ");
-    Serial.println(aCap[1], BIN);
+    Serial.print("MSB = ");
+    Serial.println(aCap[0]);
+    Serial.print("LSB = ");
+    Serial.print(aCap[1]);
   }
   else
-  {
+  {    
       Serial.println("No radio available");
   }
   Serial.println("==========================================");

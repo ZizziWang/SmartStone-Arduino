@@ -177,6 +177,7 @@ void loop() {
     aPac[5] = gz;
     
     radio.write(aPac, 6*sizeof(int16_t));
+    delay(1000);
 
     /*
     // blink LED to indicate activity
