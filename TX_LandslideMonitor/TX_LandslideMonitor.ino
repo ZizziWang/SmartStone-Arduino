@@ -49,12 +49,9 @@ int16_t gx, gy, gz;
  
 void setup()   /****** SETUP: RUNS ONCE ******/
 {
-  Serial.begin(9600);
+  Serial.begin(38400);
   Wire.begin();    //join I2C bus as a master
-  for(int i=0; i<4; i++)    //MEAS_CONF setup, CHB & CAPDAC disabled, see Table 4
-  {
-    FDC_write(0x08+i, 0x1c+0x20*i, 0x00);
-  }
+  FDC_write(0x08, 0x0c, 0x00);    //MEAS1_CONF setup, POS:CIN1, NEG:CIN4, see Table 4
   FDC_write(0x0c, 0x05, 0xF0);    //FDC register setup, rate=100S/s, see Table 5
   accelgyro.initialize();
   radio.begin();
