@@ -38,7 +38,7 @@ void loop()
     s32Cap = (s32Cap1)<<16+(s32Cap2);
     fCap = (double)s32Cap;
     fCap /= 134217728;    // fCap/=2^27, capacitance=(CapData>>8)/2^19, see 8.6.1.1
-    fSat = (-0.0005)*fCap*fCap+0.0911*fCap+3.9707;
+    fSat = 1.32*pow(fCap,2)+0.44*fCap-19.17;
     ax = aPack[2];
     ay = aPack[3];
     az = aPack[4];
@@ -53,6 +53,7 @@ void loop()
     
     fIncX = -0.0035*(ax-ax0);
     fIncY = -0.0035*(ay-ay0);
+
     Serial.print("Saturation = ");Serial.println(fSat);
     Serial.print("Incline_x = ");Serial.println(fIncX);
     Serial.print("Incline_y = ");Serial.println(fIncY);
