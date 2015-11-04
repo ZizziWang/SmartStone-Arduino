@@ -1,0 +1,27 @@
+c:\users\ccwang\documents\visual studio 2015\Projects\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+c:\users\ccwang\documents\visual studio 2015\Projects\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+c:\users\ccwang\documents\visual studio 2015\Projects\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+c:\users\ccwang\documents\visual studio 2015\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
+c:\users\ccwang\documents\visual studio 2015\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
+c:\users\ccwang\documents\visual studio 2015\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+c:\users\ccwang\documents\visual studio 2015\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
+c:\users\ccwang\documents\visual studio 2015\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+c:\users\ccwang\documents\visual studio 2015\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\Users\CCWang\Documents\Visual Studio 2015\Projects\test\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+C:\Users\CCWang\Documents\Visual Studio 2015\Projects\test\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+C:\Users\CCWang\Documents\Visual Studio 2015\Projects\test\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\Users\CCWang\Documents\Visual Studio 2015\Projects\test\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+C:\Users\CCWang\Documents\Visual Studio 2015\Projects\test\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+C:\Users\CCWang\Documents\Visual Studio 2015\Projects\test\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
+C:\Users\CCWang\Documents\Visual Studio 2015\Projects\test\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
+C:\Users\CCWang\Documents\Visual Studio 2015\Projects\test\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\CCWang\Documents\Visual Studio 2015\Projects\test\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
+C:\Users\CCWang\Documents\GitHub\SmartStone-Arduino\StbMon_GUI\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+C:\Users\CCWang\Documents\GitHub\SmartStone-Arduino\StbMon_GUI\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+C:\Users\CCWang\Documents\GitHub\SmartStone-Arduino\StbMon_GUI\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\Users\CCWang\Documents\GitHub\SmartStone-Arduino\StbMon_GUI\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+C:\Users\CCWang\Documents\GitHub\SmartStone-Arduino\StbMon_GUI\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+C:\Users\CCWang\Documents\GitHub\SmartStone-Arduino\StbMon_GUI\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
+C:\Users\CCWang\Documents\GitHub\SmartStone-Arduino\StbMon_GUI\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.StbMon_GUI.resources
+C:\Users\CCWang\Documents\GitHub\SmartStone-Arduino\StbMon_GUI\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\CCWang\Documents\GitHub\SmartStone-Arduino\StbMon_GUI\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
